@@ -45,7 +45,13 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = firebase.firestore();
 
-console.log("This is background");
+var trie_object = null;
+
+var trie_doc = db.collection("data structures").doc("keyword trie");
+trie_doc.get().then((doc) => {
+  trie_object = doc.data();
+  console.log(trie_object);
+});
 
 // With background scripts you can communicate with popup
 // and contentScript files.
@@ -53,7 +59,7 @@ console.log("This is background");
 // See https://developer.chrome.com/extensions/background_pages
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.type === 'GREETINGS') {
+  if (request.type === 'Keyword query') {
     var docRef = db.collection("keywords").doc(request.payload.message);
     console.log(request.payload.message);
     docRef.get().then((doc) => {
@@ -74,6 +80,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }).catch((error) => {
       console.log("Error getting document:", error);
   });
+  }else if(request.type === "Trie query") {
+    sendResponse({
+      trie_object,
+    });
   }
   return true;
 });
