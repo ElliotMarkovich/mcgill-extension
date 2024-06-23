@@ -229,7 +229,7 @@ function hoverEvent(popupElement, keyword){
       },
     },
     (response) => {
-      popupElement.textContent = response.message;
+      popupElement.innerHTML = response.message;
     }
    );
 }
