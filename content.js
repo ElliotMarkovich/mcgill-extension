@@ -153,11 +153,10 @@ function buildDOMTreeNew(original_text, original_text_node){
                     hoverable.className = "hoverable";
                     var keyword = original_text.substring(keyword_start_index, keyword_end_index);
                     const popup = document.createElement("span"); //creates a span that act as a popup (child of the "hoverable")
-                    popup.textContent = "Hello " + hoverable.textContent;
                     popup.className = "popuptext";
                     hoverable.appendChild(popup);
-                    hoverable.addEventListener("mouseover", function(){hoverEvent(popup, keyword);}); //adds functions for when the mouse enters and exits the keyword
-                    hoverable.addEventListener("mouseout", function(){hoverEvent(popup, keyword);});
+                    hoverable.addEventListener("mouseenter", function(){hoverEvent(popup, keyword);}); //adds functions for when the mouse enters and exits the keyword and popup
+                    hoverable.addEventListener("mouseleave", function(){hoverEvent(popup, keyword);});
                     original_text_node.parentNode.insertBefore(hoverable, original_text_node); //inserts the hoverable into the text
                     text_start_index = keyword_end_index;
                     current_index = keyword_end_index - 1; //sets current_index to the index after the keyword
@@ -177,11 +176,10 @@ function buildDOMTreeNew(original_text, original_text_node){
             hoverable.style.color = "blue";
             hoverable.className = "hoverable";
             const popup = document.createElement("span"); //creates a span that act as a popup (child of the "hoverable")
-            popup.textContent = "Hello " + hoverable.textContent;
             popup.className = "popuptext";
             hoverable.appendChild(popup);
-            hoverable.addEventListener("mouseover", function(){hoverEvent(popup);}); //adds functions for when the mouse enters and exits the keyword
-            hoverable.addEventListener("mouseout", function(){hoverEvent(popup);});
+            hoverable.addEventListener("mouseenter", function(){hoverEvent(popup);}); //adds functions for when the mouse enters and exits the keyword
+            hoverable.addEventListener("mouseleave", function(){hoverEvent(popup);});
             original_text_node.parentNode.insertBefore(hoverable, original_text_node); //inserts the hoverable into the text
             text_start_index = keyword_end_index;
             current_index = keyword_end_index - 1; //sets current_index to the index after the keyword
