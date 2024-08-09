@@ -1,13 +1,21 @@
 {
   "manifest_version": 3,
-  "name": "New McGill Chrome Extension",
+  "name": "Scheduling Simplified",
   "version": "0.1.0",
-  "description": "My New McGill Chrome Extension Test",
+  "description": "A Chrome extension to help students at McGill University schedule their courses. Displays valuable information when the user hovers over the name of a course on the Mcill website. This extension is not officially affiliated with McGill University.",
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "McGill Chrome Extension"
+    "default_title": "McGill Chrome Extension: Scheduling Simplified",
+    "default_popup": "default_popup.html",
+    "default_icon": "martlet.png"
+  },
+  "icons": {
+    "16": "martlet.png",
+    "32": "martlet.png",
+    "48": "martlet.png",
+    "128": "martlet.png"
   },
   "permissions": [
     "storage","activeTab","scripting"
@@ -15,8 +23,6 @@
   "content_scripts": [
     {
       "matches": [
-        "https://developer.chrome.com/docs/extensions/*",
-        "https://developer.chrome.com/docs/webstore/*",
         "https://www.mcgill.ca/*"
       ],
       "run_at": "document_idle",

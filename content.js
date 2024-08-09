@@ -61,8 +61,8 @@ function buildDOMTreeNew(original_text, original_text_node){
                     const popup = document.createElement("span"); //creates a span that act as a popup (child of the "hoverable")
                     popup.className = "popuptext";
                     hoverable.appendChild(popup);
-                    hoverable.addEventListener("mouseenter", function(){hoverEvent(popup, keyword);}); //adds functions for when the mouse enters and exits the keyword and popup
-                    hoverable.addEventListener("mouseleave", function(){hoverEvent(popup, keyword);});
+                    hoverable.addEventListener("mouseenter", mouseEnterEvent.bind(null, popup, keyword)); //adds functions for when the mouse enters and exits the keyword and popup
+                    hoverable.addEventListener("mouseleave", mouseLeaveEvent.bind(null, popup));
                     original_text_node.parentNode.insertBefore(hoverable, original_text_node); //inserts the hoverable into the text
                     text_start_index = keyword_end_index;
                     current_index = keyword_end_index - 1; //sets current_index to the index after the keyword
@@ -84,8 +84,8 @@ function buildDOMTreeNew(original_text, original_text_node){
             const popup = document.createElement("span"); //creates a span that act as a popup (child of the "hoverable")
             popup.className = "popuptext";
             hoverable.appendChild(popup);
-            hoverable.addEventListener("mouseenter", function(){hoverEvent(popup);}); //adds functions for when the mouse enters and exits the keyword
-            hoverable.addEventListener("mouseleave", function(){hoverEvent(popup);});
+            hoverable.addEventListener("mouseenter", mouseEnterEvent.bind(null, popup, keyword)); //adds functions for when the mouse enters and exits the keyword and popup
+            hoverable.addEventListener("mouseleave", mouseLeaveEvent.bind(null, popup));
             original_text_node.parentNode.insertBefore(hoverable, original_text_node); //inserts the hoverable into the text
             text_start_index = keyword_end_index;
             current_index = keyword_end_index - 1; //sets current_index to the index after the keyword
@@ -109,7 +109,7 @@ function isPrefixOrKeywordNew(letter, start_node){
     }
 }
 
-function hoverEvent(popupElement, keyword){
+function mouseEnterEvent(popupElement, keyword){
     popupElement.classList.toggle("show");
     // Communicate with background file by sending a message
     chrome.runtime.sendMessage(
@@ -123,4 +123,8 @@ function hoverEvent(popupElement, keyword){
       popupElement.innerHTML = response.message;
     }
    );
+}
+
+function mouseLeaveEvent(popupElement){
+    popupElement.classList.toggle("show");
 }
