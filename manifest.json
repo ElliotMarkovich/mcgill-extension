@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Scheduling Simplified",
+  "name": "McGill Chrome Extension: Scheduling Simplified",
   "version": "0.1.0",
   "description": "Displays info about a course when the user hovers over its name on the McGill website. Not officially affiliated with McGill U.",
   "background": {
