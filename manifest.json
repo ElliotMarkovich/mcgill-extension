@@ -17,9 +17,6 @@
     "48": "martlet.png",
     "128": "martlet.png"
   },
-  "permissions": [
-    "storage","activeTab","scripting"
-  ],
   "content_scripts": [
     {
       "matches": [
